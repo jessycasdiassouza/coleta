@@ -1,0 +1,307 @@
+@startuml diagrama_classes_coleta_inteligente
+
+
+scale 0.7
+skinparam dpi 150
+skinparam linetype ortho
+left to right direction
+
+hide empty methods
+hide empty fields
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+' quebra automática de largura
+page 2x2
+
+package "br.com.coleta_inteligente.model" {
+
+    enum Perfil {
+        ADMIN
+        OPERADOR
+    }
+
+    class Usuario {
+        - Long usuarioId
+        - String nome
+        - String email
+        - String senha
+        - Perfil perfil
+        - Boolean ativo
+    }
+
+    class TipoResiduo {
+        - Long tipoResiduoId
+        - String nomeTipo
+        - String descricaoTipo
+    }
+
+    class LocalDescarte {
+        - Long localDescarteId
+        - String titulo
+        - String descricao
+        - String logradouro
+        - Long numero
+        - String complemento
+        - String referencia
+        - String bairro
+        - String cidade
+        - String uf
+    }
+
+    class LocalDescarteTipoResiduo {
+        - LocalDescarteTipoResiduoId id
+        - LocalDescarte localDescarte
+        - TipoResiduo tipoResiduo
+    }
+
+    class LocalDescarteTipoResiduoId {
+        - Long localDescarteId
+        - Long tipoResiduoId
+    }
+
+    Usuario --> Perfil
+    LocalDescarteTipoResiduo --> LocalDescarte
+    LocalDescarteTipoResiduo --> TipoResiduo
+    LocalDescarteTipoResiduo --> LocalDescarteTipoResiduoId
+}
+
+package "br.com.coleta_inteligente.dto.auth" {
+
+    class LoginRequestDTO <<record>> {
+        + String email
+        + String senha
+    }
+
+    class LoginResponseDTO <<record>> {
+        + Long usuarioId
+        + String nome
+        + String email
+        + String perfil
+        + boolean ativo
+        + String token
+    }
+}
+
+package "br.com.coleta_inteligente.dto.publico" {
+
+    class LocalDescarteConsultaDTO {
+        - Long id
+        - String titulo
+        - String descricao
+        - String logradouro
+        - Long numero
+        - String complemento
+        - String referencia
+        - String bairro
+        - String cidade
+        - String uf
+        - List<String> tiposResiduo
+    }
+}
+
+package "br.com.coleta_inteligente.dto.local_descarte_tipo_residuo" {
+
+    class VinculoDTO <<record>> {
+        + Long localId
+        + String localTitulo
+        + Long tipoId
+        + String tipoNome
+    }
+}
+
+package "br.com.coleta_inteligente.repository" {
+
+    interface UsuarioRepository {
+        + Optional<Usuario> findByNome(String nome)
+        + Optional<Usuario> findByEmail(String email)
+        + List<Usuario> findByAtivoTrue()
+    }
+
+    interface TipoResiduoRepository {
+        + Optional<TipoResiduo> findByNomeTipo(String nomeTipo)
+    }
+
+    interface LocalDescarteRepository
+
+    interface LocalDescarteTipoResiduoRepository {
+        + List<LocalDescarteTipoResiduo> findByLocalDescarteLocalDescarteId(Long id)
+    }
+
+    UsuarioRepository --> Usuario
+    TipoResiduoRepository --> TipoResiduo
+    LocalDescarteRepository --> LocalDescarte
+    LocalDescarteTipoResiduoRepository --> LocalDescarteTipoResiduo
+}
+
+package "br.com.coleta_inteligente.service" {
+
+    class AuthService {
+        + LoginResponseDTO login(LoginRequestDTO dto)
+    }
+
+    class UsuarioService {
+        + Usuario criar(Usuario usuario)
+        + List<Usuario> listar()
+        + Optional<Usuario> buscarPorId(Long id)
+        + Usuario atualizar(Long id, Usuario novo)
+        + void inativar(Long id)
+    }
+
+    class TipoResiduoService {
+        + TipoResiduo criar(TipoResiduo tipo)
+        + List<TipoResiduo> listar()
+        + Optional<TipoResiduo> buscarPorId(Long id)
+        + TipoResiduo atualizar(Long id, TipoResiduo tipo)
+        + void deletar(Long id)
+    }
+
+    class LocalDescarteService {
+        + LocalDescarte criar(LocalDescarte local)
+        + List<LocalDescarte> listar()
+        + Optional<LocalDescarte> buscarPorId(Long id)
+        + LocalDescarte atualizar(Long id, LocalDescarte local)
+        + void deletar(Long id)
+    }
+
+    class LocalDescarteTipoResiduoService {
+        + LocalDescarteTipoResiduo vincular(Long localId, Long tipoId)
+        + List<VinculoDTO> listar()
+        + void remover(Long localId, Long tipoId)
+    }
+
+    AuthService --> UsuarioRepository
+    AuthService --> JwtService
+    AuthService --> LoginRequestDTO
+    AuthService --> LoginResponseDTO
+
+    UsuarioService --> UsuarioRepository
+    UsuarioService --> Usuario
+
+    TipoResiduoService --> TipoResiduoRepository
+    TipoResiduoService --> TipoResiduo
+
+    LocalDescarteService --> LocalDescarteRepository
+    LocalDescarteService --> LocalDescarte
+
+    LocalDescarteTipoResiduoService --> LocalDescarteTipoResiduoRepository
+    LocalDescarteTipoResiduoService --> LocalDescarteRepository
+    LocalDescarteTipoResiduoService --> TipoResiduoRepository
+    LocalDescarteTipoResiduoService --> VinculoDTO
+}
+
+package "br.com.coleta_inteligente.controller.admin" {
+
+    class AuthController {
+        + ResponseEntity<LoginResponseDTO> login(LoginRequestDTO dto)
+    }
+
+    class UsuarioController {
+        + Usuario criar(Usuario usuario)
+        + List<Usuario> listar()
+        + ResponseEntity<Usuario> buscar(Long id)
+        + Usuario atualizar(Long id, Usuario usuario)
+        + ResponseEntity<Void> inativar(Long id)
+    }
+
+    class TipoResiduoController {
+        + TipoResiduo criar(TipoResiduo tipo)
+        + List<TipoResiduo> listar()
+        + ResponseEntity<TipoResiduo> buscar(Long id)
+        + TipoResiduo atualizar(Long id, TipoResiduo tipo)
+        + ResponseEntity<?> deletar(Long id)
+    }
+
+    class LocalDescarteController {
+        + LocalDescarte criar(LocalDescarte local)
+        + List<LocalDescarte> listar()
+        + ResponseEntity<LocalDescarte> buscar(Long id)
+        + LocalDescarte atualizar(Long id, LocalDescarte local)
+        + ResponseEntity<?> deletar(Long id)
+    }
+
+    class LocalDescarteTipoResiduoController {
+        + LocalDescarteTipoResiduo vincular(Long localId, Long tipoId)
+        + List<VinculoDTO> listar()
+        + ResponseEntity<Void> remover(Long localId, Long tipoId)
+    }
+
+    AuthController --> AuthService
+    UsuarioController --> UsuarioService
+    TipoResiduoController --> TipoResiduoService
+    TipoResiduoController --> LocalDescarteTipoResiduoService
+    LocalDescarteController --> LocalDescarteService
+    LocalDescarteController --> LocalDescarteTipoResiduoService
+    LocalDescarteTipoResiduoController --> LocalDescarteTipoResiduoService
+}
+
+package "br.com.coleta_inteligente.controller.publico" {
+
+    class ConsultaPublicaController {
+        + List<LocalDescarteConsultaDTO> listar()
+        + List<LocalDescarteConsultaDTO> listarPorBairro(String bairro)
+        + List<LocalDescarteConsultaDTO> listarPorResiduo(String residuo)
+    }
+
+    ConsultaPublicaController --> LocalDescarteRepository
+    ConsultaPublicaController --> LocalDescarteTipoResiduoRepository
+    ConsultaPublicaController --> LocalDescarteConsultaDTO
+}
+
+package "br.com.coleta_inteligente.security" {
+
+    class CustomUserDetailsService {
+        + UserDetails loadUserByUsername(String email)
+    }
+
+    class JwtFilter {
+        + doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    }
+
+    class JwtService {
+        + String generateToken(Usuario usuario)
+        + String extractUsername(String token)
+        + String extractRole(String token)
+        + boolean isValid(String token)
+    }
+
+    CustomUserDetailsService --> UsuarioRepository
+    JwtFilter --> JwtService
+    JwtService --> Usuario
+}
+
+package "br.com.coleta_inteligente.exception" {
+
+    class GlobalExceptionHandler {
+        + ResponseEntity<?> handleBadCredentials(BadCredentialsException ex)
+        + ResponseEntity<?> handleRuntime(RuntimeException ex)
+    }
+}
+
+package "br.com.coleta_inteligente.config" {
+
+    class CorsConfig
+
+    class DataLoader {
+        + void run(String... args)
+    }
+
+    class SecurityConfig
+
+    DataLoader --> UsuarioRepository
+    DataLoader --> Usuario
+    DataLoader --> Perfil
+
+    SecurityConfig --> JwtFilter
+}
+
+package "br.com.coleta_inteligente" {
+
+    class ColetaInteligenteApplication {
+        + main(String[] args)
+    }
+}
+
+@enduml

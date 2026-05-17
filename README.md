@@ -74,13 +74,13 @@ Toda a aplicação (front-end, back-end e banco de dados) será executada atrav�
 
 A aplicação é composta pelos seguintes serviços:
 
-|-------------------|------------------------------|
+
 | Serviço           | Descrição                    |
 |-------------------|------------------------------|
 | Front-end Angular | Interface web do sistema     |
 | API Spring Boot   | Serviços REST da aplicação   |
 | PostgreSQL        | Banco de dados da aplicação  |
-|-------------------|------------------------------|
+
 
 ---
 
@@ -117,12 +117,12 @@ docker compose up --build
 
 Após a inicialização dos containers:
 
-|-----------|------------------------|
+
 | Serviço   | URL                    |
 |-----------|------------------------|
 | Front-end | http://localhost:4200  |
 | Back-end  | http://localhost:8080  |
-|-----------|------------------------|
+
 
 ---
 
@@ -130,12 +130,12 @@ Após a inicialização dos containers:
 
 O sistema cria automaticamente um usuário administrador padrão na primeira execução:
 
-|--------|------------------|
+
 | Campo | Valor             |
 |--------|------------------|
 | E-mail | admin@coleta.com |
 | Senha  | 123456           |
-|--------|------------------|
+
 
 ---
 
