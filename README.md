@@ -52,14 +52,10 @@ O sistema também possui autenticação com JWT para proteção das funcionalida
 
 ## Execução da Aplicação
 
-Para executar toda a aplicação, é necessário apenas possuir o:
-
-- Docker Desktop
-
-instalado na máquina.
+Para executar toda a aplicação, é necessário apenas possuir o Docker Desktop instalado na máquina.
+O mesmo pode ser encontrado na url oficial do docker: https://docs.docker.com/desktop/
 
 Não é necessário instalar:
-
 - Java;
 - PostgreSQL;
 - Angular CLI;
@@ -109,7 +105,7 @@ A aplicação é composta pelos seguintes serviços:
 
 ## Como Executar
 
-Com o Docker Desktop em execução, utilizar o comando:
+Com o Docker Desktop em execução, acesse o diretório raiz do projeto via linha de comando e utilize o comando:
 
 ```bash
 docker compose up --build
