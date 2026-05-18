@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <span>{{ title() }}</span>
+
+  <span style="flex: 1 1 auto;"></span>
+
+  <a mat-button routerLink="/publico">Home</a>
+
+  <a mat-button routerLink="/consulta">Pontos de Coleta</a>
+
+  <a mat-button routerLink="/login" *ngIf="!isLogado">
+    Login
+  </a>
+
+  <a mat-button routerLink="/admin" *ngIf="isLogado">
+    Área Administrativa
+  </a>
+
+  <button mat-button *ngIf="isLogado" (click)="logout()">
+    Sair
+  </button>
+
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

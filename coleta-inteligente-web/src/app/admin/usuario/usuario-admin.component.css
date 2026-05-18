@@ -1,0 +1,39 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px;
+  background: #f5f7fb;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.table {
+  width: 100%;
+  min-width: 700px;
+}
+
+.ativo {
+  color: green;
+  font-weight: bold;
+}
+
+.inativo {
+  color: red;
+  font-weight: bold;
+}
+
+

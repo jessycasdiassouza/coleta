@@ -1,0 +1,54 @@
+<div class="login-container">
+
+  <div class="login-box">
+
+    <h1>Login</h1>
+
+    <p class="subtitle">
+      Acesso administrativo do sistema
+    </p>
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+
+      <div class="input-group">
+
+        <label>Email</label>
+
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Digite seu email"
+        />
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Senha</label>
+
+        <input
+          type="password"
+          formControlName="senha"
+          placeholder="Digite sua senha"
+        />
+
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loading"
+      >
+
+        {{ loading ? 'Entrando...' : 'Entrar' }}
+
+      </button>
+
+      <p class="error" *ngIf="error">
+        {{ error }}
+      </p>
+
+    </form>
+
+  </div>
+
+</div>

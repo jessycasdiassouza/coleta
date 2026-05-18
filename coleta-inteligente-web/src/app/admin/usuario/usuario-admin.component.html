@@ -1,0 +1,97 @@
+<div class="page" *ngIf="isLogado">
+
+  <mat-card class="card">
+
+    <h2>👤 Gestão de Usuários</h2>
+
+    <!-- FORMULÁRIO -->
+    <div class="form">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="usuario.nome">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="usuario.email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" [(ngModel)]="usuario.senha">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Perfil</mat-label>
+        <mat-select [(ngModel)]="usuario.perfil">
+          <mat-option value="ADMIN">Admin</mat-option>
+          <mat-option value="OPERADOR">Operador</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <button mat-raised-button class="btn-salvar" color="primary" (click)="salvar()">
+      {{ editando ? 'Atualizar' : 'Salvar' }}
+    </button>
+
+  </mat-card>
+
+  <!-- TABELA -->
+  <mat-card class="card" >
+
+    <h3>Usuários cadastrados</h3>
+
+    <table mat-table [dataSource]="usuarios" class="table">
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let u"> {{u.nome}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let u"> {{u.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="perfil">
+        <th mat-header-cell *matHeaderCellDef> Perfil </th>
+        <td mat-cell *matCellDef="let u"> {{u.perfil}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ativo">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let u">
+          <span [class.ativo]="u.ativo" [class.inativo]="!u.ativo">
+            {{ u.ativo ? 'Ativo' : 'Inativo' }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let u">
+
+          <button mat-button color="primary" (click)="editar(u)">
+            Editar
+          </button>
+
+          <button
+            mat-button
+            [color]="u.ativo ? 'warn' : 'primary'"
+            (click)="toggleStatus(u)">
+            {{ u.ativo ? 'Inativar' : 'Ativar' }}
+          </button>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['nome','email','perfil','ativo','acoes']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['nome','email','perfil','ativo','acoes']"></tr>
+
+    </table>
+
+  </mat-card>
+
+</div>

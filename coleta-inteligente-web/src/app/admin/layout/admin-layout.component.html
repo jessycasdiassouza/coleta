@@ -1,0 +1,43 @@
+<div class="layout" *ngIf="isLogado">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <h2>♻ Coleta Inteligente - Administração</h2>
+
+    <nav>
+
+      <a routerLink="/admin">Adminstração</a>
+
+      <a *ngIf="auth.isAdmin()" routerLink="/admin/usuarios">
+        Usuários
+      </a>
+
+      <a routerLink="/admin/tipo-residuo">
+        Tipos de Resíduo
+      </a>
+
+      <a routerLink="/admin/local-descarte">
+        Locais de Descarte
+      </a>
+
+      <a routerLink="/admin/local-descarte-tipo-residuo">
+        Locais de Descarte X Tipos de Resíduo
+      </a>
+
+    </nav>
+
+    <button (click)="logout()" class="logout">
+      Sair
+    </button>
+
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main class="content">
+
+    <router-outlet></router-outlet>
+
+  </main>
+
+</div>

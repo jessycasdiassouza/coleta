@@ -1,0 +1,65 @@
+<div class="consulta-container" *ngIf="pontosColeta.length > 0">
+
+  <h1>Pontos de Coleta</h1>
+
+  <div class="card-ponto" *ngFor="let ponto of pontosColeta">
+
+    <div
+      class="card-header"
+      (click)="toggleExpand(ponto.id)"
+    >
+
+      <div>
+
+        <h2>{{ ponto.titulo }}</h2>
+
+        <p class="desc-ponto">
+          {{ ponto.logradouro }},
+          {{ ponto.numero }}
+        </p>
+
+      </div>
+
+      <div class="expand-icon">
+
+        {{ expandedId === ponto.id ? '-' : '+' }}
+
+      </div>
+
+    </div>
+
+    <div
+      class="card-body"
+      *ngIf="expandedId === ponto.id"
+    >
+
+      <p>
+        {{ ponto.descricao }}
+      </p>
+
+      <p>
+        <strong>Bairro:</strong>
+        {{ ponto.bairro }}
+      </p>
+
+      <p>
+        <strong>Cidade:</strong>
+        {{ ponto.cidade }}/{{ ponto.uf }}
+      </p>
+
+      <div class="tags">
+
+        <span
+          class="tag"
+          *ngFor="let tipo of ponto.tiposResiduo"
+        >
+          {{ tipo }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

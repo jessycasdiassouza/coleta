@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+.btn-salvar {
+  width: 140px;
+  height: 40px;
+  align-self: center;
+}
+
+.snackbar-erro {
+  --mdc-snackbar-container-color: #c62828;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+  font-weight: 500;
+}
+
+.snackbar-erro .mdc-snackbar__surface {
+  background-color: #c62828 !important;
+  color: white !important;
+}
+
+.snackbar-erro .mat-mdc-snack-bar-action {
+  color: white !important;
+}
+
+.snackbar-sucesso {
+  --mdc-snackbar-container-color: #2e7d32;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.snackbar-sucesso .mdc-snackbar__surface {
+  background-color: #2e7d32 !important;
+  color: white !important;
+}
+
+.snackbar-sucesso .mat-mdc-snack-bar-action {
+  color: white !important;
+}

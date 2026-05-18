@@ -1,0 +1,120 @@
+<div class="page" *ngIf="isLogado">
+
+  <mat-card class="card">
+
+    <h2>🔗 Vincular Resíduo ao Local</h2>
+
+    <div class="form">
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>Local de Coleta</mat-label>
+
+        <mat-select [(ngModel)]="localId">
+
+          <mat-option
+            *ngFor="let l of locais"
+            [value]="l.localDescarteId">
+
+            {{ l.titulo }}
+
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>Tipo de Resíduo</mat-label>
+
+        <mat-select [(ngModel)]="tipoId">
+
+          <mat-option
+            *ngFor="let t of tipos"
+            [value]="t.tipoResiduoId">
+
+            {{ t.nomeTipo }}
+
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
+    <button mat-raised-button class="btn-salvar" color="primary" (click)="vincular()">Vincular</button>
+
+  </mat-card>
+
+  <mat-card class="card" *ngIf="vinculados.length > 0">
+
+    <h3>Vínculos cadastrados</h3>
+
+    <table mat-table
+           [dataSource]="vinculados"
+           class="table">
+
+      <ng-container matColumnDef="local">
+
+        <th mat-header-cell *matHeaderCellDef>
+          Local
+        </th>
+
+        <td mat-cell *matCellDef="let v">
+
+          {{ v.localTitulo }}
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+
+        <th mat-header-cell *matHeaderCellDef>
+          Resíduo
+        </th>
+
+        <td mat-cell *matCellDef="let v">
+
+          {{ v.tipoNome }}
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+
+        <th mat-header-cell *matHeaderCellDef>
+          Ações
+        </th>
+
+        <td mat-cell *matCellDef="let v">
+
+          <button
+            mat-button
+            color="warn"
+            (click)="remover(v)">
+
+            Remover
+
+          </button>
+
+        </td>
+
+      </ng-container>
+
+      <tr mat-header-row
+          *matHeaderRowDef="['local','tipo','acoes']">
+      </tr>
+
+      <tr mat-row
+          *matRowDef="let row; columns: ['local','tipo','acoes']">
+      </tr>
+
+    </table>
+
+  </mat-card>
+
+</div>
