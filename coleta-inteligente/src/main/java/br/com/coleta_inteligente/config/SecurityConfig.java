@@ -53,7 +53,7 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
                 // público (Angular consulta)
-                .requestMatchers("/publico/**").permitAll()
+                .requestMatchers("/api/publico/**").permitAll()
                 // login
                 .requestMatchers("/api/auth/**").permitAll()
                 // admin protegido

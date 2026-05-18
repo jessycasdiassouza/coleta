@@ -11,7 +11,7 @@ import { LocalDescarte } from '../model/local-descarte';
 })
 export class ConsultaPublicaService {
 
-  private api = '/publico/consulta';
+  private api = '/api/publico/consulta';
 
   constructor(
     private http: HttpClient

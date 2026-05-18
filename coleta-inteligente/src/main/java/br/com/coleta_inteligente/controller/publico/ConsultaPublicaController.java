@@ -17,7 +17,7 @@ import br.com.coleta_inteligente.repository.LocalDescarteRepository;
 import br.com.coleta_inteligente.repository.LocalDescarteTipoResiduoRepository;
 
 @RestController
-@RequestMapping("/publico/consulta")
+@RequestMapping("/api/publico/consulta")
 @CrossOrigin(origins = "*")
 public class ConsultaPublicaController {
 

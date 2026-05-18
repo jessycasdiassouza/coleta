@@ -64,3 +64,8 @@ h1 {
 .desc-ponto {
   text-align: left !important;
 }
+
+.vazio {
+  text-align: center;
+  padding: 40px;
+}

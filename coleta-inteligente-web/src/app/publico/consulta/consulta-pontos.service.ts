@@ -8,7 +8,7 @@ import { LocalDescarteConsultaDTO } from './local-descarte-consulta.dto';
 })
 export class ConsultaPontosService {
 
-  private api = '/publico/consulta';
+  private api = '/api/publico/consulta';
 
   constructor(private http: HttpClient) {}
 
