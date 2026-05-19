@@ -8,48 +8,48 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Título</mat-label>
-        <input matInput [(ngModel)]="local.titulo">
+        <input matInput [(ngModel)]="local.titulo" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Descrição</mat-label>
-        <input matInput [(ngModel)]="local.descricao">
+        <input matInput [(ngModel)]="local.descricao" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Logradouro</mat-label>
-        <input matInput [(ngModel)]="local.logradouro">
+        <input matInput [(ngModel)]="local.logradouro" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Número</mat-label>
         <input matInput type="number"
-               [(ngModel)]="local.numero">
+               [(ngModel)]="local.numero" maxlength="5">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Complemento</mat-label>
-        <input matInput [(ngModel)]="local.complemento">
+        <input matInput [(ngModel)]="local.complemento" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Referência</mat-label>
-        <input matInput [(ngModel)]="local.referencia">
+        <input matInput [(ngModel)]="local.referencia" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Bairro</mat-label>
-        <input matInput [(ngModel)]="local.bairro">
+        <input matInput [(ngModel)]="local.bairro" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Cidade</mat-label>
-        <input matInput [(ngModel)]="local.cidade">
+        <input matInput [(ngModel)]="local.cidade" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>UF</mat-label>
-        <input matInput [(ngModel)]="local.uf">
+        <input matInput [(ngModel)]="local.uf" maxlength="2">
       </mat-form-field>
 
     </div>

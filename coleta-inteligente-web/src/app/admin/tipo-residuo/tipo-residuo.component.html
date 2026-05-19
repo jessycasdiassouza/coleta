@@ -10,7 +10,7 @@
 
         <mat-label>Nome do Resíduo</mat-label>
 
-        <input matInput [(ngModel)]="tipo.nomeTipo">
+        <input matInput [(ngModel)]="tipo.nomeTipo" maxlength="255">
 
       </mat-form-field>
 
@@ -18,10 +18,7 @@
 
         <mat-label>Descrição</mat-label>
 
-        <textarea
-          matInput
-          rows="3"
-          [(ngModel)]="tipo.descricaoTipo">
+        <textarea matInput rows="3" [(ngModel)]="tipo.descricaoTipo"  maxlength="255">
         </textarea>
 
       </mat-form-field>

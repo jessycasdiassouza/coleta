@@ -9,17 +9,17 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
-        <input matInput [(ngModel)]="usuario.nome">
+        <input matInput [(ngModel)]="usuario.nome" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="usuario.email">
+        <input matInput [(ngModel)]="usuario.email" maxlength="255">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Senha</mat-label>
-        <input matInput type="password" [(ngModel)]="usuario.senha">
+        <input matInput type="password" [(ngModel)]="usuario.senha" maxlength="20">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
