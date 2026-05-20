@@ -50,7 +50,9 @@ public class TipoResiduoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
-        if (!vinculoService.listar().isEmpty()) {
+        System.out.println("Tentando deletar tipo de residuo com ID: " + id);
+        if (!vinculoService.listarPorTipo(id).isEmpty()) {
+           System.out.println("Associacoes: " + vinculoService.listarPorTipo(id).size()); 
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Não é possível excluir. Existem vínculos associados.");
         }
         service.deletar(id);

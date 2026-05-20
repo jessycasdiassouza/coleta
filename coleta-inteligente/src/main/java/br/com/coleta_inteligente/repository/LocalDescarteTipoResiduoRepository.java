@@ -10,5 +10,6 @@ import br.com.coleta_inteligente.model.LocalDescarteTipoResiduoId;
 public interface LocalDescarteTipoResiduoRepository extends JpaRepository<LocalDescarteTipoResiduo, LocalDescarteTipoResiduoId> {
 
     List<LocalDescarteTipoResiduo> findByLocalDescarteLocalDescarteId(Long id);
+    List<LocalDescarteTipoResiduo> findByTipoResiduoTipoResiduoId(Long id);
 
 }

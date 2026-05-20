@@ -53,6 +53,14 @@ public class LocalDescarteTipoResiduoService {
         return retorno;
     }
 
+    public List<LocalDescarteTipoResiduo> listarPorTipo(Long tipoId) {
+        return repository.findByTipoResiduoTipoResiduoId(tipoId);
+    }
+
+    public List<LocalDescarteTipoResiduo> listarPorLocal(Long localId) {
+        return repository.findByLocalDescarteLocalDescarteId(localId);
+    }
+
     public void remover(Long localId, Long tipoId) {
         LocalDescarteTipoResiduoId id = new LocalDescarteTipoResiduoId();
         id.setLocalDescarteId(localId);

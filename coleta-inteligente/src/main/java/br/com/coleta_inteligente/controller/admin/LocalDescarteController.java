@@ -56,7 +56,9 @@ public class LocalDescarteController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
-        if (!vinculoService.listar().isEmpty()) {
+        System.out.println("Tentando deletar local de descarte com ID: " + id);
+        if (!vinculoService.listarPorLocal(id).isEmpty()) {
+           System.out.println("Associacoes: " + vinculoService.listarPorLocal(id).size()); 
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Não é possível excluir. Existem vínculos associados.");
         }
         service.deletar(id);
